@@ -18,7 +18,10 @@ router
     ///render login
     .get(userController.renderLoginForm)
     ////login into wanderlust
-    .post(saveRedirectUrl, passport.authenticate("local", { failureRedirect: "/login", failureFlash: true }), userController.login);
+    .post(saveRedirectUrl, 
+        passport.authenticate("local", 
+        { failureRedirect: "/login", failureFlash: true }), 
+        userController.login);
 
 // logout 
 router.get("/logout", userController.logout)
