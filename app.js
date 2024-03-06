@@ -66,7 +66,7 @@ store.on("error", () => {
 
 /// session option define
 const sessionOptions = {
-    store: store,
+    store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
