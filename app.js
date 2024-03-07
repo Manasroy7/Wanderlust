@@ -1,5 +1,5 @@
-if (process.env.NODE_ENV != "production") {
-    require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
 }
 // console.log(process.env.SECRET)
 
@@ -15,7 +15,7 @@ const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("./model/user.js")
+const User = require("./model/user.js");
 
 // const Listing = require("./model/listing.js");
 // const wrapAsync = require("./utils/wrapAsync.js");
@@ -26,9 +26,22 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+///all Permissions
+app.set("view engine", 'ejs');
+app.set("views", path.join(__dirname,"views"));
+app.use(express.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "/public")));
+
 //mongoDB connection
 // const MONGO_URL = 'mongodb://127.0.0.1:27017/Wanderlust';
 const dbUrl = process.env.ATLASDB_URL;
+
+async function main(){
+    // await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
+};
 
 main()
     .then(()=> {
@@ -38,18 +51,9 @@ main()
         console.log(err);
     })
 
-async function main(){
-    // await mongoose.connect(MONGO_URL);
-    await mongoose.connect(dbUrl);
-};
 
-///all Permissions
-app.set("view engine", 'ejs');
-app.set("views", path.join(__dirname,"views"));
-app.use(express.urlencoded({extended: true}));
-app.use(methodOverride("_method"));
-app.engine("ejs", ejsMate);
-app.use(express.static(path.join(__dirname, "/public")));
+
+
 
 ///mongo store session
 const store = MongoStore.create({
@@ -108,10 +112,10 @@ app.use((req, res, next) => {
  
 
 //////////// All listing route are in ./route/listing.js
-app.use("/listings", listingRouter);
+app.use("/", listingRouter);
 
 ///-----------------------Reviews
-app.use("/listings/:id/reviews", reviewRouter);
+app.use("/:id/reviews", reviewRouter);
 /////user router
 app.use("/", userRouter);
 
