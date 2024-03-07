@@ -112,10 +112,10 @@ app.use((req, res, next) => {
  
 
 //////////// All listing route are in ./route/listing.js
-app.use("/", listingRouter);
+app.use("/listings", listingRouter);
 
 ///-----------------------Reviews
-app.use("/:id/reviews", reviewRouter);
+app.use("/listings/:id/reviews", reviewRouter);
 /////user router
 app.use("/", userRouter);
 
