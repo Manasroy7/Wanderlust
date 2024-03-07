@@ -111,10 +111,10 @@ app.use((req, res, next) => {
 //////////// All listing route are in ./route/listing.js
 app.use("/", listingRouter);
 
-/////user router
-app.use("/", userRouter);
 ///-----------------------Reviews
 app.use("/listings/:id/reviews", reviewRouter);
+/////user router
+app.use("/", userRouter);
 
 ///all domain
 app.all("*" , (req, res, next) => {
