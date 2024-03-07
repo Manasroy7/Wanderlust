@@ -103,9 +103,9 @@ app.use((req, res, next) => {
 });
 
 //Root Route
-// app.get("/", (req, res)=> {
-//     res.redirect("/");
-// });
+app.get("/listings", (req, res)=> {
+    res.redirect("/listings");
+});
  
 
 //////////// All listing route are in ./route/listing.js
