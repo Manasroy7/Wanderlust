@@ -114,7 +114,7 @@ app.use("/", listingRouter);
 /////user router
 app.use("/", userRouter);
 ///-----------------------Reviews
-app.use("listings/:id/reviews", reviewRouter);
+app.use("/listings/:id/reviews", reviewRouter);
 
 ///all domain
 app.all("*" , (req, res, next) => {
