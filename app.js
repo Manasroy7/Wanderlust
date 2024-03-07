@@ -91,7 +91,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //Root Route
 app.get("/", (req, res)=> {
-    res.send("/listings");
+    res.redirect("/listings");
 });
 
 //////Middleware validation function for listings
