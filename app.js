@@ -109,7 +109,7 @@ app.use((req, res, next) => {
  
 
 //////////// All listing route are in ./route/listing.js
-app.use("/", listingRouter);
+app.use("/listings", listingRouter);
 
 ///-----------------------Reviews
 app.use("/listings/:id/reviews", reviewRouter);
