@@ -89,10 +89,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-//Root Route
-app.get("/", (req, res)=> {
-    res.redirect("/listings");
-});
 
 //////Middleware validation function for listings
 
@@ -106,6 +102,10 @@ app.use((req, res, next) => {
     next();
 });
 
+//Root Route
+app.get("/", (req, res)=> {
+    res.redirect("/listings");
+});
  
 
 //////////// All listing route are in ./route/listing.js
