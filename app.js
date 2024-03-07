@@ -103,9 +103,9 @@ app.use((req, res, next) => {
 });
 
 //Root Route
-app.get("/", (req, res)=> {
-    res.redirect("/");
-});
+// app.get("/", (req, res)=> {
+//     res.redirect("/");
+// });
  
 
 //////////// All listing route are in ./route/listing.js
@@ -114,7 +114,7 @@ app.use("/", listingRouter);
 /////user router
 app.use("/", userRouter);
 ///-----------------------Reviews
-app.use("/listings/:id/reviews", reviewRouter);
+app.use("/:id/reviews", reviewRouter);
 
 ///all domain
 app.all("*" , (req, res, next) => {
