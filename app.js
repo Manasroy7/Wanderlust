@@ -104,7 +104,7 @@ app.use((req, res, next) => {
 
 //Root Route
 app.get("/", (req, res)=> {
-    res.redirect("/listings");
+    res.redirect("/");
 });
  
 
