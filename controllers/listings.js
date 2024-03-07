@@ -33,44 +33,29 @@ module.exports.showListing = async (req, res) => {
 };
 
 
-module.exports.createListing = async (req, res, next)=>{
-    let response = await geocodingClient.forwardGeocode({
-        query: req.body.listing.location,
-        limit: 1,
-      })
-    .send();
+module.exports.createListing = async (req, res, next) => {
+    try {
+        let response = await geocodingClient.forwardGeocode({
+            query: req.body.listing.location,
+            limit: 1,
+        }).send();
 
-    let url = req.file.path;
-    let filename = req.file.filename;
-    // console.log(url, filename);
-    const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;
-    newListing.image = {url, filename}
+        let url = req.file.path;
+        let filename = req.file.filename;
+        const newListing = new Listing(req.body.listing);
+        console.log(newListing);
+        newListing.owner = req.user._id;
+        newListing.image = { url, filename }
 
-    newListing.geometry = response.body.features[0].geometry;
+        newListing.geometry = response.body.features[0].geometry;
 
-    let savedListing = await newListing.save();
-    console.log(savedListing);
-    req.flash("success", "New Listing Created!");
-    res.redirect("/listings"); 
-    /////// normal validation
-        // if(!req.body.listing) {
-        //     throw new ExpressError(400, "Send valid data for listing.")
-        // }
-
-
-    
-    // try {
-        // let {title, description, image, price, country, location} = req.body;     //do modification on new.ejs 
-        // let listing = req.body.listing;
-        // console.log(listing);
-        
-        // const newListing = new Listing(req.body.listing);
-        // await newListing.save();
-        // res.redirect("/listings"); 
-    // } catch (err) {
-    //     next(err);
-    // }
+        let savedListing = await newListing.save();
+        console.log(savedListing);
+        req.flash("success", "New Listing Created!");
+        res.redirect("/listings");
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 
