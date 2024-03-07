@@ -90,9 +90,9 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //Root Route
-// app.get("/", (req, res)=> {
-//     res.send("Hi, I am root");
-// });
+app.get("/", (req, res)=> {
+    res.send("/listings");
+});
 
 //////Middleware validation function for listings
 
@@ -109,14 +109,14 @@ app.use((req, res, next) => {
  
 
 //////////// All listing route are in ./route/listing.js
-app.use("/listings", listingRouter);
+app.use("/", listingRouter);
 
-///-----------------------Reviews
-app.use("/listings/:id/reviews", reviewRouter);
 /////user router
 app.use("/", userRouter);
+///-----------------------Reviews
+app.use("/listings/:id/reviews", reviewRouter);
 
-///all domain 
+///all domain
 app.all("*" , (req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
