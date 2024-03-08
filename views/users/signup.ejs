@@ -1,22 +1,66 @@
 <% layout("layouts/boilerplate") %>
 
+<style>
+    body{
+        /* background-color: rgb(241, 234, 42); */
+        background: linear-gradient(30deg, #f1a52a 40%, #00000000 30%),
+        linear-gradient(60deg, #e91e63 70%, #ff5722 30%);
+    }
+    .box {
+        background-color: antiquewhite;
+        border: 1px solid aquamarine;
+        margin-top: 3% !important;
+        border-radius: 1rem; 
+        box-shadow: 8px 10px 15px rgba(75, 86, 237, 0.62);
+    }
+    .box h2 {
+        color: blue;
+        margin-left: 8%;
+    }
+    .box-text {
+        margin-left: 12%;
+    }
+    @media (min-width: 200px) and (max-width: 750px) {
+        .box {
+            margin: 5vh 2vh 5vh 2vh;
+            padding: 5vh;
+        }
+    }
+    @media(min-width: 751px) and (max-width: 1024px) {
+        .box{
+            width: 50vw;
+            height: 65vh;
+            padding: 5vh 5vh;
+            margin: 25%;
 
-<div class="row mt-3">
-    <h2 class="col-6 offset-3">Signup on Wanderlust</h2>
-    <div class="col-6 offset-3">
+        }
+    }
+    @media (min-width: 1025px) {
+        .box {
+            width: 40vw;
+            height: 65vh;
+            margin: 25%;
+            margin-bottom: 3rem;
+            padding: 5vh;
+        }
+    }
+</style>
+<div class="row mt-3 box">
+    <h2 class="col-7 offset-3"><b>Signup on Wanderlust</b></h2>
+    <div class="col-7 offset-3 box-text">
         <form action="/signup" method="POST" class="needs-validation" novalidate>
-            <div class="mb-3">
+            <div class="mb-3 ">
                 <label for="username" class="form-label">Username:</label>
-                <input type="text" name="username" class="form-control" placeholder="Enter your Username" required>
+                <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
                 <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" name="email" class="form-control" placeholder="Enter your Email" required>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter your unique Password" required>
+                <input type="password" name="password" class="form-control" placeholder="Enter unique Password" required>
             </div>
             <button class="btn btn-success">Signup</button>
         </form>
